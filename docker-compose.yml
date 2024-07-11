@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  db_odoo:
+    container_name: postgresdb-odoo
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+
+  web:
+    container_name: web-odoo
+    build: .
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000 --workers=1 --timeout 600 --reload
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    depends_on:
+      - db_odoo
+    volumes:
+      - staticfiles:/opt/project/staticfiles
+      - mediafiles:/opt/project/mediafiles
+      - .:/opt/project
+
+  nginx:
+    container_name: nginx-odoo
+    image: nginx:mainline-alpine
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - staticfiles:/opt/project/staticfiles
+      - mediafiles:/opt/project/mediafiles
+    depends_on:
+      - web
+
+volumes:
+  postgresql-data:
+  staticfiles:
+  mediafiles:
