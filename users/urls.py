@@ -9,5 +9,6 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("signup/", views.signup, name="signup"),
-    # path("protected/", views.ProtectedView.as_view(), name="protected_view"),
+    path("update_profile/", views.update_profile, name="update_profile"),
+    path("protected/", views.ProtectedView.as_view(), name="protected_view"),
 ]
