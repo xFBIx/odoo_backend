@@ -11,4 +11,5 @@ urlpatterns = [
     path("signup/", views.signup, name="signup"),
     path("update_profile/", views.update_profile, name="update_profile"),
     path("protected/", views.ProtectedView.as_view(), name="protected_view"),
+    path("google-auth/", views.google_auth, name="google_auth"),
 ]
