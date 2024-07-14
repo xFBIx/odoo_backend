@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     # Apps
     "users.apps.UsersConfig",
-    # "books.apps.BooksConfig",
+    "books.apps.BooksConfig",
 ]
 
 MIDDLEWARE = [
