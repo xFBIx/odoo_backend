@@ -45,10 +45,10 @@ INTERNAL_IPS = [
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 STATIC_ROOT = "/opt/project/staticfiles"
-STATIC_URL = "/static/"
+STATIC_URL = "/api/static/"
 
 MEDIA_ROOT = "/opt/project/mediafiles"
-MEDIA_URL = "/media/"
+MEDIA_URL = "/api/media/"
 
 # Application definition
 
